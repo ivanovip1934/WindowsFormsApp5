@@ -31,7 +31,9 @@ namespace WindowsFormsApp5
 
         const uint SWP_NOSIZE = 0x0001;
         const uint SWP_NOZORDER = 0x0004;
+        const uint SWP_SHOWWINDOW = 0x0040;
         const int SW_MAXIMIZE = 3;
+        const int SW_RESTORE = 9;
 
         public static void Main()
         {
@@ -77,6 +79,10 @@ namespace WindowsFormsApp5
             var area = Screen.AllScreens[0].Primary ? Screen.AllScreens[1].WorkingArea : Screen.AllScreens[0].WorkingArea;
             int scStartWidth = area.X;
             int scStartHight = area.Y;
+            int scWidth = area.Width;
+            int scHight = area.Height;
+
+            MessageBox.Show($"Width: {scWidth}, Hight: {scHight}", "Ширина и высота монитора");
           
             
             IntPtr hWnd = IntPtr.Zero;
@@ -95,7 +101,9 @@ namespace WindowsFormsApp5
             {
                 // Move the window to (0,0) without changing its size or position
                 // in the Z order.
-                SetWindowPos(hWnd, IntPtr.Zero, scStartWidth, scStartHight, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+                SetWindowPos(hWnd, IntPtr.Zero, scStartWidth, scStartHight, scWidth, scHight, SWP_SHOWWINDOW);
+                ShowWindow(hWnd, SW_RESTORE);
+                SetWindowPos(hWnd, IntPtr.Zero, scStartWidth, scStartHight, 0, 0, SWP_SHOWWINDOW);
                 ShowWindow(hWnd, SW_MAXIMIZE);
             }
         }
