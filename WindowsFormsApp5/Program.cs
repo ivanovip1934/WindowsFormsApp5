@@ -82,7 +82,7 @@ namespace WindowsFormsApp5
             int scWidth = area.Width;
             int scHight = area.Height;
 
-            MessageBox.Show($"Width: {scWidth}, Hight: {scHight}", "Ширина и высота монитора");
+            // MessageBox.Show($"Ширина и высота рабочей области экрана на доп. мониторе{Environment.NewLine} Width: {scWidth}, Hight: {scHight}",  "Сообщение");
           
             
             IntPtr hWnd = IntPtr.Zero;
